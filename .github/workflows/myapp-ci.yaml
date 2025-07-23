@@ -32,9 +32,15 @@ jobs:
       - name: Install Poetry
         run: pip install poetry
 
+      - name: Build Python packages
+        working-directory: ${{ env.PROJECT_DIR }}
+        run: poetry build --format wheel
+
       - name: Install dependencies (dev)
         working-directory: ${{ env.PROJECT_DIR }}
-        run: poetry install --only dev
+        run: |
+          poetry run pip install dist/*.whl
+          poetry install --only dev
 
       - name: Run tests and collect coverage
         working-directory: ${{ env.PROJECT_DIR }}
