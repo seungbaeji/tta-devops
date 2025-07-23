@@ -44,7 +44,7 @@ jobs:
 
       - name: Run tests and collect coverage
         working-directory: ${{ env.PROJECT_DIR }}
-        run: poetry run pytest --cov=./ --cov-report=xml
+        run: poetry run pytest
         continue-on-error: false
 
   build:
